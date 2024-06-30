@@ -27,7 +27,7 @@ public class AutenticacionControlador {
         return ResponseEntity.ok(autenticacionServicio.autenticarUsuario(request));
     }
 
-    @PostMapping("/obtener-usuario-token/{token}")
+    @GetMapping("/obtener-usuario-token/{token}")
     public TokenResponse obtenerUsuarioPorToken(@Valid @PathVariable(name = "token") String token){
         return autenticacionServicio.obtenerNombreUsuario(token);
     }
