@@ -5,7 +5,6 @@ import com.upao.edu.nutricampusmicroserviciousuario.excepciones.RecursoExistente
 import com.upao.edu.nutricampusmicroserviciousuario.modelos.Usuario;
 import com.upao.edu.nutricampusmicroserviciousuario.repositorios.UsuarioRepositorio;
 import com.upao.edu.nutricampusmicroserviciousuario.serializers.DietaCronograma;
-import com.upao.edu.nutricampusmicroserviciousuario.serializers.Rutina;
 import com.upao.edu.nutricampusmicroserviciousuario.serializers.RutinaCronograma;
 import com.upao.edu.nutricampusmicroserviciousuario.serializers.cronogramasemanal.CronogramaSemanalSerializer;
 import com.upao.edu.nutricampusmicroserviciousuario.serializers.usuario.CrearUsuarioRequest;
