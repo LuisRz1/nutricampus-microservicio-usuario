@@ -19,16 +19,16 @@ public class AutenticacionControlador {
         return autenticacionServicio.registrarUsuario(request);
     }
     @GetMapping("/token-confirmacion/{token}")
-    public String activarCuenta(@PathVariable(name = "token") String token){
-        return autenticacionServicio.ConfirmarCuenta(token);
+    public String activarCuenta(@PathVariable() String token){
+        return autenticacionServicio.confirmarCuenta(token);
     }
     @PostMapping("/iniciar-sesion/")
     public ResponseEntity<AutenticacionUsuarioResponse> iniciarSesion(@Valid @RequestBody AutenticacionUsuarioRequest request) throws Exception {
         return ResponseEntity.ok(autenticacionServicio.autenticarUsuario(request));
     }
 
-    @GetMapping("/obtener-usuario-token/{token}")
-    public TokenResponse obtenerUsuarioPorToken(@Valid @PathVariable(name = "token") String token){
-        return autenticacionServicio.obtenerNombreUsuario(token);
+    @PostMapping("/obtener-usuario-token/")
+    public TokenResponse obtenerUsuarioPorToken(@RequestBody ObtenerUsuarioToken request){
+        return autenticacionServicio.obtenerNombreUsuario(request);
     }
 }

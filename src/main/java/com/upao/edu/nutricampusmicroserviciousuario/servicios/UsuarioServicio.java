@@ -2,6 +2,7 @@ package com.upao.edu.nutricampusmicroserviciousuario.servicios;
 
 
 import com.upao.edu.nutricampusmicroserviciousuario.excepciones.RecursoExistenteExcepcion;
+import com.upao.edu.nutricampusmicroserviciousuario.modelos.TokenConfirmacion;
 import com.upao.edu.nutricampusmicroserviciousuario.modelos.Usuario;
 import com.upao.edu.nutricampusmicroserviciousuario.repositorios.UsuarioRepositorio;
 import com.upao.edu.nutricampusmicroserviciousuario.serializers.DietaCronograma;
@@ -24,6 +25,7 @@ public class UsuarioServicio {
 
     @Autowired private UsuarioRepositorio usuarioRepositorio;
     @Autowired private RestTemplate restTemplate;
+    @Autowired private TokenServicio tokenServicio;
     @Value("${dieta.service.url}")
     private String url;
     @Value("${rutina.service.url}")
@@ -67,6 +69,7 @@ public class UsuarioServicio {
     // DELETE
     public List<UsuarioSerializer> eliminarusuario(String nombreUsuario){
         Usuario usuario = buscarPorNombreUsuario(nombreUsuario);
+        tokenServicio.eliminarToken(usuario);
         usuarioRepositorio.delete(usuario);
         return listarUsuarios();
     }

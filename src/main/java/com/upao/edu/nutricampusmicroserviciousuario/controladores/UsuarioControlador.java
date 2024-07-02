@@ -22,18 +22,18 @@ public class UsuarioControlador {
     }
 
     @PutMapping("/editar/{usuario}")
-    public UsuarioSerializer editarUsuario(@PathVariable(name = "usuario") String usuario, @RequestBody EditarUsuarioRequest request){
+    public UsuarioSerializer editarUsuario(@PathVariable() String usuario, @RequestBody EditarUsuarioRequest request){
         return usuarioServicio.editarUsuario(usuario, request);
     }
 
     @DeleteMapping("/eliminar/{usuario}")
-    public List<UsuarioSerializer> eliminarUsuario(@PathVariable(name = "usuario") String usuario){
+    public List<UsuarioSerializer> eliminarUsuario(@PathVariable() String usuario){
         return usuarioServicio.eliminarusuario(usuario);
     }
 
     @GetMapping("/buscar-por-usuario/{usuario}")
-    public UsuarioSerializer buscarPorUsuario(@PathVariable(name = "usuario") String request){
-        return usuarioServicio.retornarUsuarioSerializer(usuarioServicio.buscarPorNombreUsuario(request));
+    public UsuarioSerializer buscarPorUsuario(@PathVariable() String usuario){
+        return usuarioServicio.retornarUsuarioSerializer(usuarioServicio.buscarPorNombreUsuario(usuario));
     }
 
     @PostMapping("/actualizar-cambios/")

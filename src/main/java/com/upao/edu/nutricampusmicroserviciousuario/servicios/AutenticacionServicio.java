@@ -36,7 +36,7 @@ public class AutenticacionServicio {
         return usuarioServicio.retornarUsuarioSerializer(usuario);
     }
 
-    public String ConfirmarCuenta(String token){
+    public String confirmarCuenta(String token){
         TokenConfirmacion tokenConfirmacion = tokenServicio.encontrarToken(token);
         if(tokenConfirmacion.getFechaActivacion() != null){
             throw new EmailUsadoExcepcion("Este email ya ha sido confirmado");
@@ -63,7 +63,7 @@ public class AutenticacionServicio {
                 "                ACTIVACIÓN DE CUENTA</h3>\n" +
                 "              <p style=\"text-align: center; font-size: 18px; color: #000;\">Se activó la cuenta correctamente.</p>\n" +
                 "              <div style=\"text-align: center; margin-top: 30px;\">\n" +
-                "                <a href=\"#\"\n" + //Poner link del login del front en donde esta el "#"
+                "                <a href=\"https://develop--nutricampus.netlify.app/login\"\n" + //Poner link del login del front en donde esta el "#"
                 "                  style=\"display: inline-block; padding: 12px 24px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-size: 18px; font-weight: bold;\">\n" +
                 "                  Iniciar sesión\n" +
                 "                </a>\n" +
@@ -89,8 +89,9 @@ public class AutenticacionServicio {
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario y/o password incorrectos");
     }
 
-    public TokenResponse obtenerNombreUsuario(String request){
-        String token = EncryptionUtil.decrypt(request);
+    public TokenResponse obtenerNombreUsuario(ObtenerUsuarioToken request){
+        String JSONToken = request.getToken();
+        String token = EncryptionUtil.decrypt(JSONToken);
         return new TokenResponse(jwtTokenUtil.getUserNameFromToken(token));
     }
 }
